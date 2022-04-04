@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("temp/head", { title: "Challenge | User not Found" }) %>
+
+        <style>
+            a {
+                padding: 10px;
+                display: block;
+                background: var(--accent-primary);
+                color: var(--background-primary);
+                border-radius: 8px;
+            }
+
+            a:hover {
+                background: var(--accent-primary-hover);
+                color: var(--background-primary);
+            }
+            
+            a:focus ion-icon {
+                background: none;
+            }
+
+            main {
+                padding: 0 64px;
+            }
+        </style>
+</head>
+<body>
+    <main>
+        <div>
+            <h1>User '<%= user %>' has not typed &#128532;</h1>
+            
+            <a href="https://Challenge1.korbindev.repl.co/" target="_blank">Challenge #1 <ion-icon name="open-outline"></ion-icon></a>
+        </div>
+    </main>
+</body>
+</html>

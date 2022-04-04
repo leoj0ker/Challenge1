@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("temp/head", { title: "Challenge #1 | Leaderboard" }) %>
+  
+    <style>
+        .content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .explanation {
+            margin: 16px 0;
+        }
+
+    	table {
+    		width: 100%;
+    		table-layout: fixed;
+    	}
+
+        table tr:first-child {
+            background: var(--accent-primary) !important;
+        }
+
+        table .tooltip {
+            flex-direction: column-reverse;
+        }
+
+        table .tooltip-text {
+            left: 0 !important;
+            top: -8px;
+        }
+
+        table th:hover .tooltip-text {
+            top: 0;
+        }
+			
+    	table th {
+    		color: var(--background-primary);
+    		text-align: left;
+            padding: 16px;
+            padding-top: 0;
+    		font-size: 18px;
+    		white-space: nowrap;	
+    	}
+    
+    	table td, table td.index {
+    		color: var(--accent-secondary);
+            overflow: hidden;
+    	}
+
+        table tr td:nth-child(2) {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        table td img {
+            border-radius: 50%;
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+    
+    	table tr:nth-child(odd) {
+    		background: var(--background-secondary);
+    		border-radius: 4px;
+    	}
+    
+    	table tr td:first-child, table tr th:first-child {
+    		border-top-left-radius: 4px;
+    		border-bottom-left-radius: 4px;
+            width: 20px;
+    	}
+    	
+    	table tr td:last-child, table tr th:last-child {
+    		border-top-right-radius: 4px;
+    		border-bottom-right-radius: 4px;
+    	}
+
+        table .tooltip-text {
+            font-weight: normal;
+            background: var(--background-primary) !important;
+            color: var(--accent-primary) !important;
+            top: 0 !important;
+        }
+
+        table .label:hover + .tooltip-text {
+            top: -8px !important;
+        }
+
+        table tr.user {
+            background: var(--accent-primary-hover);
+        }
+
+        table tr.user td {
+            color: var(--background-primary);
+        }
+
+        table .user td a {
+            color: var(--background-primary);
+        }
+
+        table .user td a:hover {
+            color: var(--background-secondary);
+        }
+    </style>
+</head>
+<body>
+    <%- include("temp/nav") %>
+
+    <main>
+        <%- include("temp/side", { sel: "leaders" }) %>
+
+        <div class="content">
+            <div class="explanation">You are ranked based on your points (chars &times; wpm &divide; 100), and your wpm! The leaderboard updates every 2 minutes!</div>
+            <div class="explanation">Don't forget to get the <a href="/book" class="ee">Bookmarklet</a> for replit!</div>
+        
+            <table>
+                <tr>
+                    <th>
+                        <div class="tooltip">
+                            <span class="label">
+                                #
+                            </span>
+
+                            <span class="tooltip-text">Rank</span>
+                        </div>
+                    </th>
+
+                    <th>
+                        <div class="tooltip">
+                            <span class="label">Name</span>
+
+                            <span class="tooltip-text">The human</span>
+                        </div>
+                    </th>
+
+                    <th>
+                        <div class="tooltip">
+                            <span class="label">PB WPM</span>
+
+                            <span class="tooltip-text">Personal best words per minute</span>
+                        </div>
+                    </th>
+	    						
+                    <th>
+                        <div class="tooltip">
+                            <span class="label">Points</span>
+
+                            <span class="tooltip-text">Characters × wpm / 100</span>
+                        </div>
+                    </th>
+                </tr>
+                <% users.forEach((user, i) => { %>
+                    <% if (user.username == username) { %>
+                    <tr class="user">
+                    <% } else { %>
+                    <tr>
+                    <% } %>
+                        <td class="index"><%= i + 1 %></td>
+                        <td><img src="<%= pfps[user.username] || '/favicon-32x32.png' %>" alt="<%= user.username %>" width="32" height="32" /> <a href="/user/<%= user.username %>"><%= user.username %></a></td>
+                        <td><%= user.wpm %></td>
+                        <td><%= user.score.toLocaleString() %></td>
+                    </tr>
+                <% }); %>
+            </table> 
+        </div>
+    </main>
+
+    <%- include("temp/foot") %>
+</body>
+</html>

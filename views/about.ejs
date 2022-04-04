@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("temp/head", { title: "Challenge #1 | About" }) %>
+</head>
+<body>
+    <nav>
+		<div class="logo"><a href="/">Challenge #1</a></div>
+
+		<div class="right">
+			<% if (username) { %>
+                <div class="tooltip">
+					<a href="/user/<%= username %>"><%= username %></a>
+					<span class="tooltip-text">Profile</span>
+				</div>
+			<% } else { %>
+                <script src="/src/lib/auth.js" authed="location.reload()"></script>
+			<% } %>
+
+            <div class="tooltip">
+                <span class="label">
+                    <button class="theme-btn">
+                        <ion-icon name="sunny" class="theme-icon"></ion-icon>
+                    </button>
+                </span>
+
+                <span class="tooltip-text">Change theme</span>
+            </div>
+		</div>
+	</nav>
+
+    <main class="about">
+        <div class="sidebar">
+			<a tabindex="1" href="/">
+				<div class="tooltip">
+					<ion-icon name="play"></ion-icon>
+
+					<span class="tooltip-text">Type</span>
+				</div>
+			</a>
+
+			<a tabindex="2" href="/leaders">
+				<div class="tooltip">
+					<ion-icon name="trophy"></ion-icon>
+	
+					<span class="tooltip-text">Leaders</span>
+				</div>
+			</a>
+
+            <% if (username) { %>
+    			<a tabindex="3" href="/user/<%= username %>">
+    				<div class="tooltip">
+    					<ion-icon name="person"></ion-icon>
+    	
+    					<span class="tooltip-text">Profile</span>
+    				</div>
+    			</a>
+            <% } %>
+		</div>
+
+        <div class="main">
+            <h1>About</h1>
+            <p><a href="https://replit.com/@Korbindev" target="_blank">Korbin</a> and <a href="https://replit.com/@nicdev" target="_blank">Nick</a> created Challenge #1 for the<a href="https://madewith.replit.com" target="_blank">Made with Replit</a>jam and the <a href="https://wmsnews.repl.co" target="_blank"> WMS News challenge!</a> Special thanks to <a href="https://replit.com/@19wintersp" target="_blank">19wintersp</a> for suggesting an improved formula for calculating the WPM, and <a href="https://replit.com/@unnospid" target="_blank">unnospid</a> for designing and hacking the dark mode theme! Standard would not be the same without you guys!</p>
+            <p>This challenge this week is to get to the top of the leaderboard! I had created something similar to this before. Of course, the jam was released, and we started preparing for that instead. I designed the website and added the backend. Some of the typing client code was used to create Standard, however most of the development was made during the jam, as there were quite some bugs, and it wasn't very responsive. Not to mention all the backend that was required to be built for Standard to be multiplayer! This project was quite a grind, and I think the result was worth it.</p>
+            <p>The backend was built entirely on nodejs using modules on a nix repl! The database is stored with replit db. As it got more popular, things became slow, so we had to cache the data with a pretty elegant solution. All of the code was written in replit, even the bookmarklet!</p>
+            <p>We hope you enjoy This weeks Challegnge!</p>
+        </div>
+    </main>
+
+    <footer>
+		<div class="footer-inner">
+			<a href="/book" tabindex="3">
+				<div class="tooltip">
+					<span class="label">Bookmarklet</span>
+
+					<span class="tooltip-text">Replit integration</span>
+				</div>
+			</a>
+
+			<a href="/about" tabindex="4">
+				<div class="tooltip">
+					<span class="label">About</span>
+
+					<span class="tooltip-text">Who made this</span>
+				</div>
+			</a>
+
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<nav>
+    <div class="logo"><a href="/">Challenge #1</a></div>
+
+    <div class="right">
+        <% if (username) { %>
+            <div class="tooltip">
+                <a href="/user/<%= username %>"><%= username %></a>
+                <span class="tooltip-text">Profile</span>
+            </div>
+        <% } else { %>
+            <script src="/src/lib/auth.js" authed="location.reload()"></script>
+        <% } %>
+
+        <div class="tooltip">
+            <span class="label">
+                <button class="theme-btn">
+                    <ion-icon name="sunny" class="theme-icon"></ion-icon>
+                </button>
+            </span>
+
+            <span class="tooltip-text">Change theme</span>
+        </div>
+    </div>
+</nav>

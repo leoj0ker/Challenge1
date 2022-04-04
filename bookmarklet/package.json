@@ -1,0 +1,16 @@
+{
+    "type": "module",
+    "name": "bookmarklet",
+    "version": "1.0.0",
+    "description": "Creates a bookmarklet",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Coder100",
+    "license": "MIT",
+    "dependencies": {
+        "terser": "^5.12.1"
+    }
+}

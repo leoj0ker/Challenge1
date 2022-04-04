@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("temp/head", { title: "Challenge #1" }) %>
+
+    <style>
+        .vertflex {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        <% if (nosmooth) { %>
+            .cursor {
+                transition: none;
+            }
+        <% } %>
+    </style>
+</head>
+<body>
+	<%- include("temp/nav") %>
+
+	<main class="type-main">
+		<%- include("temp/side", { sel: "play" }) %>
+		
+		<div class="type">
+			<div class="typing-cont">
+				<textarea
+					class="textarea"
+					spellcheck="false"
+					autocapitalize="off"
+					autocomplete="off"
+					autocorrect="off"
+		
+					data-gramm="false"
+					data-gramm_editor="false"
+					data-enable-grammarly="false"
+				></textarea>
+			
+				<div class="char-cont"></div>
+				<div class="cursor"></div>
+				<div class="blur-div fade-in">Click or press any key to start</div>
+            </div>
+
+            <div class="stats">
+                <div class="top">
+                    <div class="stats-wrapper">
+                        <div class="tooltip">
+                            <div class="stat">
+                                <div class="pb"><ion-icon name="star"></ion-icon></div>
+                            </div>
+    
+                            <div class="tooltip-text">Personal Best!</div>
+                        </div>
+                        
+                        <div class="tooltip">
+                            <div class="stat">
+                                <h1 class="wpm">...</h1>
+                                <div class="label">wpm</div>
+                            </div>
+    
+                            <div class="tooltip-text">Words per minute</div>
+                        </div>
+    
+                        <div class="tooltip">
+                            <div class="stat">
+                                <h1 class="accuracy">...</h1> <!-- REAL ACCURACY VALUE HERE -->
+        
+                                <div class="label">%</div>
+                            </div>
+    
+                            <div class="tooltip-text">Accuracy</div>
+                        </div>
+    
+                        <div class="tooltip">
+                            <div class="stat">
+                                <h1 class="points">...</h1> <!-- REAL PTS VALUE HERE -->
+    
+                                <div class="label">pts</div>
+                            </div>
+                            <div class="tooltip-text">chars &times; wpm &divide; 100</div>
+                        </div>	
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <canvas class="chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button tabindex="4">
+                        <div class="next tooltip">
+                            <ion-icon name="play"></ion-icon>
+            
+                            <span class="tooltip-text">Next text (Enter)</span>
+                        </div>
+                    </button>
+
+                    <button tabindex="5">
+                        <div class="share tooltip">
+                            <ion-icon name="share-social"></ion-icon>
+                            <span class="tooltip-text">Share</span>
+                        </div>
+                    </button>
+
+                    <% if (!username) { %>
+                        <div class="vertflex">
+                            <div class="red">Log in to save your progress!</div>
+                            <script src="/src/lib/auth.js" authed="location.reload()"></script>
+                        </div>
+                    <% } %>
+                </div>
+			</div>
+		</div>
+	</main>
+
+	<%- include("temp/foot") %>
+
+	<script src="./src/index.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("temp/head", { title: "Challenge #1 | " + username }) %>
+        
+    <style>
+    	.content {
+    		margin-left: auto;
+    		margin-right: auto;
+    		display: flex;
+    		flex-direction: column;
+    		gap: 32px;
+    		align-items: center;
+    	}
+    	
+    	.content img {
+    		border-radius: 50%;
+    		width: 180px;
+    		outline: 4px solid var(--accent-primary);
+    		outline-offset: 4px;
+    	}
+    
+    	.content .name {
+    		display: flex;
+    		flex-direction: column;
+				align-items: center;
+    		gap: 8px;
+    	}
+    	
+    	.content h2 {
+    		color: var(--accent-secondary);
+    		font-size: 32px;
+    		margin: 0;
+    	}
+    
+    	.content h3 {
+    		color: var(--accent-secondary);
+    		font-size: 24px;
+    		margin: 0;
+    	}
+    
+    	.content .info {
+    		display: flex;
+    		gap: 64px;
+    	}
+    
+    	.content .info > div {
+    		display: flex;
+    		gap: 16px;
+    		flex-direction: column;
+            align-items: center;
+    	}
+    
+    	.content .info .main {
+    		display: flex;
+    		flex-direction: column;
+            align-items: center;
+    		gap: 8px;
+    	}
+    
+    	.content .info .main .part {
+    		display: flex;
+    		gap: 4px;		
+    	}
+    
+    	.content .info .main .part p {
+    		font-size: 18px;
+    		margin: 0;
+    	}
+    
+    	.content .info .main .part p:first-child {
+    		color: var(--accent-primary);
+    	}
+    
+    	.content .info .main .part p:last-child, .content .info .main .part .tooltip p {
+    		color: var(--accent-secondary);
+    	}
+    
+    	.content .info .main .part .tooltip {
+    		flex-direction: column-reverse;
+    	}
+    
+    	.content .info .main .part .tooltip-text {
+    		left: 0 !important;
+    		top: -8px;
+    	}
+    
+    	.content .info .main .part .tooltip:hover .tooltip-text {
+    		top: 0;
+    		opacity: 1;
+    	}
+    
+    	table tr:first-child {
+            background: var(--accent-primary) !important;
+        }
+    
+    	table td, table td.index {
+    		color: var(--accent-secondary);
+    	}
+    	
+    	table th {
+            color: var(--background-primary);
+            text-align: left;
+            padding: 16px;
+            font-size: 18px;
+            white-space: nowrap;	
+        }
+    
+        table tr:nth-child(odd) {
+            background: var(--background-secondary);
+            border-radius: 4px;
+        }
+    
+        table tr td:first-child, table tr th:first-child {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        
+        table tr td:last-child, table tr th:last-child {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+    </style>
+
+    <% if (mini) { %>
+        <style>
+            main {
+                padding: 16px 64px;
+            }
+
+            .content img {
+                width: 90px;
+            }
+
+            .a {
+                padding: 10px;
+                display: block;
+                background: var(--accent-primary);
+                color: var(--background-primary);
+                border-radius: 8px;
+            }
+
+            .a:hover {
+                background: var(--accent-primary-hover);
+                color: var(--background-primary);
+            }
+            
+            .a:focus ion-icon {
+                background: none;
+            }
+        </style>
+    <% } %>
+</head>
+<body>
+    <% if (!mini) { %>
+        <%- include("temp/nav") %>
+    <% } %>
+
+    <main>
+        <% if (!mini) { %>
+            <%- include("temp/side", { sel: "prof" }) %>
+        <% } %>
+
+        <div class="content">
+            <img src="<%= pfp %>" alt="pfp" width="<%= mini ? 90 : 180 %>" height="<%= mini ? 90 : 180 %>">
+    
+            <div class="name">
+                <h2><%= username %></h2>
+    
+                <h3>Rank #<%= rank %></h3>
+            </div>
+    
+            <div class="info">
+                <div class="profile-stats">
+                    <% if (!mini) { %>
+                        <h3>Stats</h3>
+                    <% } %>
+    
+                    <div class="main">
+                        <div class="part">
+                            <p>Points:</p>
+    
+                            <p> <%= score.toLocaleString() %></p>
+                        </div>
+
+                        <% if (!mini) { %>
+                            <div class="part">
+                                <p>Avg. wpm:</p>
+        
+                                <p> <%= avgwpm.toFixed(2) %></p>
+                            </div>
+                        <% } %>
+    
+                        <div class="part">
+                            <p><%= mini ? "WPM" : "Highest wpm" %>:</p>
+    
+                            <p> <%= wpm %></p>
+                        </div>
+
+                        <% if (!mini) { %>
+                            <div class="part">
+                                <p>Avg. accuracy:</p>
+        
+                                <p> <%= avgacc.toFixed(2) %></p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+    
+                <% if (!mini) { %>
+                    <div class="history">
+                        <h3>History</h3>
+        
+                        <table>
+                            <tr>
+                                <th>WPM</th>
+                                <th>Accuracy</th>
+                            </tr>
+                            <% tests.forEach(test => { %>
+                                <tr>
+                                    <td><%= test.wpm %></td>
+                                    <td><%= test.acc %>%</td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </div>
+                <% } %>
+            </div>
+            
+            <% if (mini) { %>
+                <a class="a" href="https://Challenge1.korbindev.repl.co/" target="_blank">Challenge #1 <ion-icon name="open-outline"></ion-icon></a>
+            <% } %>
+        </div>
+    </main>
+
+    <% if (!mini) { %>
+        <footer>
+    		<div class="footer-inner">
+    			<a href="/book" tabindex="3">
+    				<div class="tooltip">
+    					<span class="label">Bookmarklet</span>
+    
+    					<span class="tooltip-text">Replit integration</span>
+    				</div>
+    			</a>
+    
+    			<a href="/about" tabindex="4">
+    				<div class="tooltip">
+    					<span class="label">About</span>
+    
+    					<span class="tooltip-text">Who made this</span>
+    				</div>
+    			</a>
+    
+    		</div>
+    	</footer>
+    <% } %>
+</body>
+</html>

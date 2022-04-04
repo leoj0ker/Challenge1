@@ -1,0 +1,27 @@
+<div class="sidebar">
+    <a tabindex="1" href="/">
+        <div class="tooltip">
+            <ion-icon name="play" <%- sel == "play" ? 'class="active"' : '' %>></ion-icon>
+
+            <span class="tooltip-text">Type</span>
+        </div>
+    </a>
+
+    <a tabindex="2" href="/leaders">
+        <div class="tooltip">
+            <ion-icon name="trophy" <%- sel == "leaders" ? 'class="active"' : '' %>></ion-icon>
+
+            <span class="tooltip-text">Leaders</span>
+        </div>
+    </a>
+
+    <% if (username) { %>
+        <a tabindex="3" href="/user/<%= username %>">
+            <div class="tooltip">
+                <ion-icon name="person" <%- sel == "prof" ? 'class="active"' : '' %>></ion-icon>
+
+                <span class="tooltip-text">Profile</span>
+            </div>
+        </a>
+    <% } %>
+</div>
